@@ -9,7 +9,24 @@
       <parent link="base_footprint"/>
       <child link="base_link" />
     </joint>
-  
+
+    <gazebo reference="front_caster">
+        <mu>0</mu>
+        <mu2>0</mu2>
+    </gazebo>
+    <gazebo reference="back_caster">
+        <mu>0</mu>
+        <mu2>0</mu2>
+    </gazebo>
+    <gazebo reference="right_wheel">
+        <mu>1</mu>
+        <mu2>1</mu2>
+    </gazebo>
+    <gazebo reference="left_wheel">
+        <mu>1</mu>
+        <mu2>1</mu2>
+    </gazebo>
+
   	<link name="base_link">
         <inertial>
             <mass value="20" />
