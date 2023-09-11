@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- roslaunch arguments --> 
+	<arg name="debug" default="false"/>
+	<arg name="world_name" default="$(find rb1_base_gazebo)/worlds/ros2_online_workshop.world"/>
+
+	<!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(arg world_name)"/>
+		<arg name="debug" value="$(arg debug)" />
+		<arg name="paused" value="false"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="headless" value="false"/>
+		<arg name="verbose" value="true"/>
+	</include>
+
+    <param name="robot_description" command="cat '$(find my_rb1_description)urdf/my_rb1_robot.urdf'"/>
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="spawn_my_rb1_model" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-urdf -model my_rb1 -param robot_description -x -0.5 -y -1.35 -z 0" />
+  <!-- Replace X_POSITION, Y_POSITION, and Z_POSITION with your desired robot's spawn position -->
+
+
+
+</launch>

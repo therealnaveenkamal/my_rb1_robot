@@ -2,6 +2,9 @@
 
 <robot name="robot">
 
+    <gazebo reference="base_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
     <gazebo reference="front_caster">
         <mu>0</mu>
         <mu2>0</mu2>
@@ -13,10 +16,14 @@
     <gazebo reference="right_wheel">
         <mu>1</mu>
         <mu2>1</mu2>
+        <material>Gazebo/Grey</material>
+
     </gazebo>
     <gazebo reference="left_wheel">
         <mu>1</mu>
         <mu2>1</mu2>
+        <material>Gazebo/Grey</material>
+
     </gazebo>
 
   	<link name="base_link">
