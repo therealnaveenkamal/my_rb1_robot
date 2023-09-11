@@ -2,14 +2,6 @@
 
 <robot name="robot">
 
-    <link name="base_footprint"/>
-
-    <joint name="base_joint" type="fixed">
-      <origin xyz="0 0 0.0102" rpy="0 0 0" />
-      <parent link="base_footprint"/>
-      <child link="base_link" />
-    </joint>
-
     <gazebo reference="front_caster">
         <mu>0</mu>
         <mu2>0</mu2>
@@ -50,8 +42,26 @@
         </visual>
     </link>
 
+
+    <joint name="base_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 -0.15" />
+      <parent link="base_link"/>
+      <child link="base_footprint" />
+    </joint>
+
+    <link name="base_footprint">
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size = "0.2 0.1 0.01" />
+            </geometry>
+        </collision>
+
+    </link>
+
     <joint name="joint_front_caster" type="fixed">
-        <origin rpy="0 0 0" xyz="-0.1 0 -0.15" />
+        <origin rpy="0 0 0" xyz="0.1 0 -0.15" />
         <child link="front_caster" />
         <parent link="base_link" />
         <joint_properties damping="1.0" friction="1.0" />
@@ -81,13 +91,13 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 -0.005" />
             <geometry>
-                <sphere radius="0.02" />
+                <sphere radius="0.015" />
             </geometry>
         </collision>
         <visual>
             <origin rpy="0 0 0" xyz="0 0 -0.005" />
             <geometry>
-                <sphere radius="0.02" />
+                <sphere radius="0.015" />
             </geometry>
             <material name="Grey">
                 <color rgba="0.6 0.6 0.6 1" />
@@ -97,7 +107,7 @@
 
 
     <joint name="joint_back_caster" type="fixed">
-        <origin rpy="0 0 0" xyz="0.1 0 -0.15" />
+        <origin rpy="0 0 0" xyz="-0.1 0 -0.15" />
         <child link="back_caster" />
         <parent link="base_link" />
         <joint_properties damping="1.0" friction="1.0" />
@@ -210,42 +220,40 @@
     </link>
 
 
-    <!-- Gazebo tags - Laser scan -->
-<gazebo reference="joint_front_laser">
-    <preserveFixedJoint>true</preserveFixedJoint>
-</gazebo>
-<gazebo reference="front_laser">
-    <material>Gazebo/DarkGrey</material>
-</gazebo>
+    <gazebo reference="joint_front_laser">
+        <preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+    <gazebo reference="front_laser">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
 
-<!-- Laser scan -->
-<joint name="joint_front_laser" type="fixed">
-    <origin rpy="0 0 0" xyz="0.25 0 0.075" />
-    <child link="front_laser" />
-    <parent link="base_link" />
-    <joint_properties damping="1.0" friction="1.0" />
-</joint>
-<link name="front_laser">
-    <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="1" />
-        <inertia ixx="0.000252666666667" ixy="0" ixz="0" iyy="0.000252666666667" iyz="0" izz="0.0005"/>
-    </inertial>
-    <visual>
-        <origin xyz="0 0 0" rpy="3.14159265359 0 0" />
-        <geometry>
-            <cylinder radius="0.015" length="0.020"/>
-        </geometry>
-        <material name="Red">
-            <color rgba="0.7 0.1 0.1 1" />
-        </material>
-    </visual>
-    <collision>
-        <origin xyz="0 0 0" rpy="3.14159265359 0 0"/>
-        <geometry>
-            <cylinder radius="0.015" length="0.020"/>
-        </geometry>
-    </collision>
-</link>
+    <joint name="joint_front_laser" type="fixed">
+        <origin rpy="0 0 0" xyz="0.25 0 0.075" />
+        <child link="front_laser" />
+        <parent link="base_link" />
+        <joint_properties damping="1.0" friction="1.0" />
+    </joint>
+    <link name="front_laser">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.000252666666667" ixy="0" ixz="0" iyy="0.000252666666667" iyz="0" izz="0.0005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="3.14159265359 0 0" />
+            <geometry>
+                <cylinder radius="0.015" length="0.020"/>
+            </geometry>
+            <material name="Red">
+                <color rgba="0.7 0.1 0.1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="3.14159265359 0 0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.020"/>
+            </geometry>
+        </collision>
+    </link>
 
 </robot>   
