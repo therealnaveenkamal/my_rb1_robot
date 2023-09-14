@@ -29,8 +29,8 @@ bool rotateCallback(my_rb1_ros::Rotate::Request &req,
 
   while (ros::ok()) {
 
-    ROS_INFO("Robot rotated by %f radians, Current Degrees: %f", required,
-             current_angular_z * (180 / M_PI));
+    /*ROS_INFO("Robot rotated by %f radians, Current Degrees: %f", required,
+             current_angular_z * (180 / M_PI));*/
 
     if (fabs(val - current_angular_z) < 0.01) {
       vel.angular.z = 0;
@@ -41,7 +41,7 @@ bool rotateCallback(my_rb1_ros::Rotate::Request &req,
       break;
     }
 
-    vel.angular.z = -0.3 * (val - current_angular_z);
+    vel.angular.z = -0.5 * (val - current_angular_z);
 
     /*
         if (fabs(current_angular_z - requiredDegree) < 0.01) {
